@@ -19,5 +19,14 @@ public class AuthModel
 			return false;
 		 
 	}
+	
+	public void register(String n, String b, String p, String c)
+	{
+		System.out.println( "      Nombre : " + n + "\n" +
+							"   Biografía : " + b + "\n" +
+							"Preferencias : " + p + "\n" +
+							"     Colonia : " + c);
+			
+	}
 
 }
