@@ -228,7 +228,7 @@ public class AuthView extends JFrame
 				if (p1 && p2)
 				{
 					if (modelo.autenticar(nombre.getText(), pass))
-						JOptionPane.showMessageDialog(panelAfuera, "Bienvenido de vuelta, admin!", "Bienvenido", JOptionPane.INFORMATION_MESSAGE);
+						home();
 					else
 	 					JOptionPane.showMessageDialog(panelAfuera, "Nombre de usuario o contraseña incorrectos.", "Datos incorrectos", JOptionPane.ERROR_MESSAGE);
 				}
@@ -510,6 +510,42 @@ public class AuthView extends JFrame
 			}
 			
 		});
+		
+		panel.revalidate();
+
+		this.add(panel);
+		this.repaint();
+	}
+	
+	public void home()
+	{
+		this.getContentPane().removeAll();
+		
+		this.setSize(800, 700);
+		this.setTitle("Home");
+		this.setLocationRelativeTo(null);
+		
+		JPanel panel = new JPanel();
+		panel.setLocation(0, 0);
+		panel.setSize(this.WIDTH, this.HEIGHT);
+		panel.setOpaque(true);
+		panel.setLayout(null);
+		
+		
+		// JLabels
+		
+		JLabel home = new JLabel("Home");
+		home.setSize(210, 40);
+		home.setLocation(285, 10);
+		home.setBackground(new Color(43, 107, 217));
+		home.setForeground(Color.white);
+		home.setOpaque(true);
+		home.setFont(titulo);
+		home.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(home);
+		
+		
+		
 		
 		panel.revalidate();
 

@@ -1,5 +1,9 @@
 package models;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 public class AuthModel 
 {
 
@@ -11,13 +15,31 @@ public class AuthModel
 	public boolean autenticar(String u, String p)
 	{
 		
-		if(u.equals("admin") && p.equals("123456") ) 
+		String url = AuthModel.class.getResource("/files/usuarios.txt").getPath();
+		
+		try (BufferedReader br = new BufferedReader(new FileReader(url))) 
 		{
-			return true;
-		}
-		else
+		    String line;
+		    while ((line = br.readLine()) != null) 
+		    {
+		       String[] arrString = line.split("[,\\s]");
+		       
+		       if((u.equals(arrString[0]) || u.equals(arrString[2])) && p.equals(arrString[4])) 
+				{
+					return true;
+				}
+		    }
+			
 			return false;
+			
+		} catch (Exception e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Algo salió mal");
+		}
 		 
+		return false;
 	}
 	
 	public void register(String n, String b, String p, String c)
