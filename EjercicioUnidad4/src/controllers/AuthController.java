@@ -16,5 +16,10 @@ public class AuthController {
 	{
 		v.login();
 	}
+	
+	public void formulario()
+	{
+		v.formulario();
+	}
 
 }

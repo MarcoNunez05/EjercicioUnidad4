@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -551,5 +554,255 @@ public class AuthView extends JFrame
 
 		this.add(panel);
 		this.repaint();
+	}
+	
+	public void formulario()
+	{
+		this.getContentPane().removeAll();
+		
+		this.setSize(700, 800);
+		this.setTitle("Formulario");
+		this.setLocationRelativeTo(null);
+		
+		JPanel panel = new JPanel();
+		panel.setLocation(0, 0);
+		panel.setSize(this.WIDTH, this.HEIGHT);
+		panel.setOpaque(true);
+		panel.setLayout(null);
+		
+		
+		// JLabels
+		
+		JLabel tituloForm = new JLabel("Formulario de Registro");
+		tituloForm.setSize(400, 40);
+		tituloForm.setLocation(145, 10);
+		tituloForm.setBackground(Color.DARK_GRAY);
+		tituloForm.setForeground(Color.white);
+		tituloForm.setOpaque(true);
+		tituloForm.setFont(titulo);
+		tituloForm.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(tituloForm);
+		
+		JLabel labelNombre = new JLabel("Nombres:");
+		labelNombre.setSize(100, 40);
+		labelNombre.setLocation(130, 90);
+		labelNombre.setForeground(Color.black);
+		labelNombre.setFont(subtitulo);
+		labelNombre.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(labelNombre);
+		
+		JLabel labelApellidos = new JLabel("Apellidos:");
+		labelApellidos.setSize(100, 40);
+		labelApellidos.setLocation(130, 160);
+		labelApellidos.setForeground(Color.black);
+		labelApellidos.setFont(subtitulo);
+		labelApellidos.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(labelApellidos);
+		
+		JLabel labelEmpresa = new JLabel("Empresa/Institución:");
+		labelEmpresa.setSize(200, 40);
+		labelEmpresa.setLocation(30, 230);
+		labelEmpresa.setForeground(Color.black);
+		labelEmpresa.setFont(subtitulo);
+		labelEmpresa.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(labelEmpresa);
+		
+		JLabel labelAmbito = new JLabel("Ámbito de la empresa:");
+		labelAmbito.setSize(200, 40);
+		labelAmbito.setLocation(27, 290);
+		labelAmbito.setForeground(Color.black);
+		labelAmbito.setFont(subtitulo);
+		labelAmbito.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(labelAmbito);
+		
+		JLabel labelCargo = new JLabel("Cargo:");
+		labelCargo.setSize(100, 40);
+		labelCargo.setLocation(145, 360);
+		labelCargo.setForeground(Color.black);
+		labelCargo.setFont(subtitulo);
+		labelCargo.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(labelCargo);
+		
+		JLabel labelUsuario = new JLabel("Nombre de usuario:");
+		labelUsuario.setSize(200, 40);
+		labelUsuario.setLocation(35, 430);
+		labelUsuario.setForeground(Color.black);
+		labelUsuario.setFont(subtitulo);
+		labelUsuario.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(labelUsuario);
+		
+		JLabel labelPassword = new JLabel("Contraseña:");
+		labelPassword.setSize(150, 40);
+		labelPassword.setLocation(95, 500);
+		labelPassword.setForeground(Color.black);
+		labelPassword.setFont(subtitulo);
+		labelPassword.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(labelPassword);
+		
+		JLabel labelRPassword = new JLabel("Repetir contraseña:");
+		labelRPassword.setSize(175, 40);
+		labelRPassword.setLocation(50, 570);
+		labelRPassword.setForeground(Color.black);
+		labelRPassword.setFont(subtitulo);
+		labelRPassword.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(labelRPassword);
+		
+		JLabel labelCorreo = new JLabel("Correo electrónico:");
+		labelCorreo.setSize(175, 40);
+		labelCorreo.setLocation(50, 640);
+		labelCorreo.setForeground(Color.black);
+		labelCorreo.setFont(subtitulo);
+		labelCorreo.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(labelCorreo);
+		
+		
+		// JTextField
+		
+		nombre = new JTextField();
+		nombre.setSize(300, 40);
+		nombre.setLocation(240, 90);
+		nombre.setLayout(null);
+		nombre.setBorder(new LineBorder(Color.black, 3, true));
+		panel.add(nombre);
+		
+		JTextField apellidos = new JTextField();
+		apellidos.setSize(300, 40);
+		apellidos.setLocation(240, 160);
+		apellidos.setLayout(null);
+		apellidos.setBorder(new LineBorder(Color.black, 3, true));
+		panel.add(apellidos);
+		
+		JTextField empresa = new JTextField();
+		empresa.setSize(300, 40);
+		empresa.setLocation(240, 230);
+		empresa.setLayout(null);
+		empresa.setBorder(new LineBorder(Color.black, 3, true));
+		panel.add(empresa);
+		
+		JTextField cargo = new JTextField();
+		cargo.setSize(300, 40);
+		cargo.setLocation(240, 360);
+		cargo.setLayout(null);
+		cargo.setBorder(new LineBorder(Color.black, 3, true));
+		panel.add(cargo);
+		
+		JTextField usuario = new JTextField();
+		usuario.setSize(300, 40);
+		usuario.setLocation(240, 430);
+		usuario.setLayout(null);
+		usuario.setBorder(new LineBorder(Color.black, 3, true));
+		panel.add(usuario);
+		
+		password = new JPasswordField();
+		password.setSize(300, 40);
+		password.setLocation(240, 500);
+		password.setLayout(null);
+		password.setBorder(new LineBorder(Color.black, 3, true));
+		panel.add(password);
+		
+		JPasswordField RPassword = new JPasswordField();
+		RPassword.setSize(300, 40);
+		RPassword.setLocation(240, 570);
+		RPassword.setLayout(null);
+		RPassword.setBorder(new LineBorder(Color.black, 3, true));
+		panel.add(RPassword);
+		
+		JTextField correo = new JTextField();
+		correo.setSize(300, 40);
+		correo.setLocation(240, 640);
+		correo.setLayout(null);
+		correo.setBorder(new LineBorder(Color.black, 3, true));
+		panel.add(correo);
+		
+		
+		// JComboBox
+		
+		String [] stringAmbito = {"Tecnología", "Salud", "Educación", "Comercio", "Otro"};
+		
+		JComboBox ambito = new JComboBox(stringAmbito);
+		ambito.setLocation(240, 290);
+		ambito.setSize(300, 40);
+		ambito.setLayout(null);
+		panel.add(ambito);
+		
+		
+		// JButton
+		
+		JButton registrarse = new JButton("Regístrate");
+		registrarse.setSize(130, 40);
+		registrarse.setLocation(275, 700);
+		registrarse.setBackground(Color.darkGray);
+		registrarse.setForeground(Color.white);
+		registrarse.setFont(subtitulo);
+		registrarse.setLayout(null);
+		registrarse.setBorder(new LineBorder(Color.black, 3, true));
+		panel.add(registrarse);
+		
+		registrarse.addMouseListener(new MouseAdapter() 
+		{
+			public void mouseEntered(MouseEvent e)
+			{
+				registrarse.setBackground(Color.gray);
+			}
+			
+			public void mouseExited(MouseEvent e)
+			{
+				registrarse.setBackground(Color.darkGray);
+			}
+		});
+		
+		registrarse.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				String pass = new String(password.getPassword());
+				String RPass = new String(RPassword.getPassword());
+				
+				Pattern p = Pattern.compile("[^a-z0-9]", Pattern.CASE_INSENSITIVE);
+				Matcher m = p.matcher(pass); 
+				
+				if (nombre.getText().matches("[a-zA-Z\\s]+"))
+					if (apellidos.getText().matches("[a-zA-Z\\s]+"))
+						if (empresa.getText().matches("[a-zA-Z0-9\\s]+"))
+							if (cargo.getText().matches("[a-zA-Z\\s]+"))
+								if (usuario.getText().matches("[a-zA-Z0-9\\s]+"))
+									if (pass.matches("\\S+") && m.find())
+										if (RPass.equals(pass))
+											if (correo.getText().matches("\\S+"))
+												try 
+												{
+													modelo.registrar(nombre.getText(), apellidos.getText(), empresa.getText(), ambito.getSelectedItem().toString(), cargo.getText(), usuario.getText(), pass, correo.getText());
+												} 
+												catch (IOException e1) 
+												{
+													System.out.println("Error: " + e1.getMessage());
+												}
+											else
+												JOptionPane.showMessageDialog(panel, "El correo no tiene que tener espacios", "Caracteres inválidos", JOptionPane.ERROR_MESSAGE);
+										else
+											JOptionPane.showMessageDialog(panel, "Las contraseñas tienen que coincidir", "Caracteres inválidos", JOptionPane.ERROR_MESSAGE);
+									else
+										JOptionPane.showMessageDialog(panel, "La contraseña tiene que tener al menos un caracter especial y no puede tener espacios", "Caracteres inválidos", JOptionPane.ERROR_MESSAGE);
+								else
+									JOptionPane.showMessageDialog(panel, "El nombre de usuario solo puede tener letras, números y espacios", "Caracteres inválidos", JOptionPane.ERROR_MESSAGE);
+							else
+								JOptionPane.showMessageDialog(panel, "El cargo solo puede tener letras y espacios", "Caracteres inválidos", JOptionPane.ERROR_MESSAGE);
+						else
+							JOptionPane.showMessageDialog(panel, "La empresa/institución solo puede tener letras, números y espacios", "Caracteres inválidos", JOptionPane.ERROR_MESSAGE);
+					else
+						JOptionPane.showMessageDialog(panel, "Los apellidos solo puede tener letras y espacios", "Caracteres inválidos", JOptionPane.ERROR_MESSAGE);
+				else
+					JOptionPane.showMessageDialog(panel, "El nombre solo puede tener letras y espacios", "Caracteres inválidos", JOptionPane.ERROR_MESSAGE);
+			}
+			
+		});
+		
+		
+		panel.revalidate();
+
+		this.add(panel);
+		this.repaint();
+		this.setVisible(true);
 	}
 }

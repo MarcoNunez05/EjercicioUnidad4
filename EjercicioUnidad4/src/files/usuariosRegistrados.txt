@@ -1,0 +1,2 @@
+Marco, mnunez_23@uabcs.mx, 123456
+Eduardo, edu_23@uabcs.mx, pass123

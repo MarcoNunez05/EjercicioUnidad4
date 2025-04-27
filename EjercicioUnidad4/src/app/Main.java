@@ -7,7 +7,8 @@ public class Main {
 	{
 		AuthController a = new AuthController();
 		
-		a.login();
+		// a.login();
+		a.formulario();
 	}
 
 }

@@ -3,10 +3,14 @@ package models;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class AuthModel 
 {
 
+	
 	public AuthModel() 
 	{
 		
@@ -15,7 +19,7 @@ public class AuthModel
 	public boolean autenticar(String u, String p)
 	{
 		
-		String url = AuthModel.class.getResource("/files/usuarios.txt").getPath();
+		String url = AuthModel.class.getResource("/files/usuariosRegistrados.txt").getPath();
 		
 		try (BufferedReader br = new BufferedReader(new FileReader(url))) 
 		{
@@ -49,6 +53,28 @@ public class AuthModel
 							"Preferencias : " + p + "\n" +
 							"     Colonia : " + c);
 			
+	}
+	
+	public void registrar(String n, String a, String e, String am, String c, String u, String p, String cr) throws IOException
+	{
+		FileWriter archivo = null;
+		PrintWriter escritor = null;
+		
+		try
+		{	
+			archivo = new FileWriter("src/files/usuarios.txt", true);
+			escritor = new PrintWriter(archivo);
+			
+			escritor.println(n + "|" + a + "|" + e + "|" + am + "|" + c + "|" + u + "|" + p + "|" + cr);
+		}
+		catch (Exception ex)
+		{
+			System.out.println("Error: " + ex.getMessage());
+		}
+		finally
+		{
+			archivo.close();
+		}
 	}
 
 }
