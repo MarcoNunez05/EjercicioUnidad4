@@ -18,7 +18,10 @@ public class AuthModel
 	
 	public boolean autenticar(String u, String p)
 	{
+		// Regresamos true para que siempre nos deje ingresar al sistema
+		return true;
 		
+		/*
 		String url = AuthModel.class.getResource("/files/usuariosRegistrados.txt").getPath();
 		
 		try (BufferedReader br = new BufferedReader(new FileReader(url))) 
@@ -44,6 +47,7 @@ public class AuthModel
 		}
 		 
 		return false;
+		*/
 	}
 	
 	public void register(String n, String b, String p, String c)

@@ -1,8 +1,10 @@
 package views;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -28,6 +30,7 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 import models.AuthModel;
+import controllers.HomeController;
 
 public class AuthView extends JFrame
 {
@@ -37,10 +40,12 @@ public class AuthView extends JFrame
 	
 	private JTextField nombre;
 	private JPasswordField password;
-	private AuthModel modelo;	
+	private AuthModel modelo;
+	private HomeController hm;
 	
 	public AuthView()
 	{
+		hm = new HomeController();
 		modelo = new AuthModel();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setMinimumSize(new Dimension(400, 400));
@@ -231,7 +236,10 @@ public class AuthView extends JFrame
 				if (p1 && p2)
 				{
 					if (modelo.autenticar(nombre.getText(), pass))
-						home();
+					{
+						dispose();
+						hm.home();
+					}
 					else
 	 					JOptionPane.showMessageDialog(panelAfuera, "Nombre de usuario o contraseña incorrectos.", "Datos incorrectos", JOptionPane.ERROR_MESSAGE);
 				}
@@ -513,42 +521,6 @@ public class AuthView extends JFrame
 			}
 			
 		});
-		
-		panel.revalidate();
-
-		this.add(panel);
-		this.repaint();
-	}
-	
-	public void home()
-	{
-		this.getContentPane().removeAll();
-		
-		this.setSize(800, 700);
-		this.setTitle("Home");
-		this.setLocationRelativeTo(null);
-		
-		JPanel panel = new JPanel();
-		panel.setLocation(0, 0);
-		panel.setSize(this.WIDTH, this.HEIGHT);
-		panel.setOpaque(true);
-		panel.setLayout(null);
-		
-		
-		// JLabels
-		
-		JLabel home = new JLabel("Home");
-		home.setSize(210, 40);
-		home.setLocation(285, 10);
-		home.setBackground(new Color(43, 107, 217));
-		home.setForeground(Color.white);
-		home.setOpaque(true);
-		home.setFont(titulo);
-		home.setHorizontalAlignment(JLabel.CENTER);
-		panel.add(home);
-		
-		
-		
 		
 		panel.revalidate();
 
