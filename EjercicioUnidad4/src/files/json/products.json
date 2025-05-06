@@ -1,0 +1,38 @@
+[
+  {
+    "ID": 1,
+    "Nombre": "Smartphone XYZ",
+    "Precio": 799.99,
+    "Stock": 25
+  },
+  {
+    "ID": 2,
+    "Nombre": "Laptop UltraPro",
+    "Precio": 1299.99,
+    "Stock": 10
+  },
+  {
+    "ID": 3,
+    "Nombre": "Tablet VisionPad",
+    "Precio": 499.99,
+    "Stock": 15
+  },
+  {
+    "ID": 4,
+    "Nombre": "Smartwatch Gen 5",
+    "Precio": 249.99,
+    "Stock": 30
+  },
+  {
+    "ID": 5,
+    "Nombre": "Auriculares Inalámbricos BassX",
+    "Precio": 149.99,
+    "Stock": 20
+  },
+  {
+    "ID": 6,
+    "Nombre": "Monitor LED 27” HD",
+    "Precio": 399.99,
+    "Stock": 12
+  }
+]

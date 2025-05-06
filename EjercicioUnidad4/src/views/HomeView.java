@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import controllers.AuthController;
+import controllers.ProductController;
 
 
 public class HomeView extends JFrame 
@@ -29,6 +30,7 @@ public class HomeView extends JFrame
 	Font mini = new Font("Cambria Math", Font.PLAIN, 14);
 	
 	AuthController ac;
+	ProductController pc;
 	
 	public HomeView()
 	{
@@ -308,6 +310,40 @@ public class HomeView extends JFrame
 			public void actionPerformed(ActionEvent e) 
 			{
 				JOptionPane.showMessageDialog(panel, "Ejemplo de configuración.", "Configuración", JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+		});
+		
+		JButton productos = new JButton("Productos");
+		productos.setBackground(new Color(66, 119, 212));
+		productos.setForeground(Color.white);
+		productos.setFont(subtitulo);
+		productos.setHorizontalAlignment(JLabel.CENTER);
+		productos.setBorder(BorderFactory.createLineBorder(Color.black, 3));
+		panelCentro.add(productos);
+		
+		productos.addMouseListener(new MouseAdapter() 
+		{
+			public void mouseEntered(MouseEvent e)
+			{
+				productos.setBackground(new Color(95, 138, 212));
+			}
+			
+			public void mouseExited(MouseEvent e)
+			{
+				productos.setBackground(new Color(66, 119, 212));
+			}
+		});
+		
+		productos.addActionListener(new ActionListener() 
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				pc = new ProductController();
+				pc.productos();
 			}
 			
 		});
