@@ -31,4 +31,18 @@ public class ProductController
 		model = new ProductModel();
 		return model.get();
 	}
+	
+	public void addView()
+	{
+		view.addProduct();
+	}
+	
+	public void add(String n, String d, String p, String s)
+	{
+		model = new ProductModel();
+		model.addProduct(model.getID(),n, d, p, s);
+		Vector<Vector<String>> data = model.get();
+		
+		view.product(data);
+	}
 }

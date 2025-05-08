@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -17,6 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import org.json.simple.JSONArray;
 
@@ -53,9 +56,13 @@ public class ProductView extends JFrame
 		
 		JPanel panelCentro = new JPanel();
 		panelCentro.setOpaque(true);
-		panelCentro.setLayout(new BorderLayout(20, 50));
+		panelCentro.setLayout(new BorderLayout(20, 10));
 		panelCentro.setBorder(BorderFactory.createLineBorder(Color.black, 3));
 		panel.add(panelCentro, BorderLayout.CENTER);
+		
+		JPanel panelHeader = new JPanel();
+		panelHeader.setLayout(new BorderLayout(150, 0));
+		panelCentro.add(panelHeader, BorderLayout.NORTH);
 		
 		JPanel panelAbajo = new JPanel();
 		panelAbajo.setOpaque(true);
@@ -120,23 +127,283 @@ public class ProductView extends JFrame
 		});
 		
 		
+		JButton nuevo = new JButton("Nuevo Producto");
+		nuevo.setBackground(new Color(191, 61, 149));
+		nuevo.setForeground(Color.white);
+		nuevo.setFont(subtitulo);
+		nuevo.setHorizontalAlignment(JLabel.CENTER);
+		nuevo.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+		panelHeader.add(nuevo, BorderLayout.CENTER);
+		
+		nuevo.addMouseListener(new MouseAdapter() 
+		{
+			public void mouseEntered(MouseEvent e)
+			{
+				nuevo.setBackground(new Color(189, 104, 161));
+			}
+			
+			public void mouseExited(MouseEvent e)
+			{
+				nuevo.setBackground(new Color(191, 61, 149));
+			}
+		});
+		
+		nuevo.addActionListener(new ActionListener() 
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				pc = new ProductController();
+				
+				pc.addView();
+			}
+			
+		});
+		
+		JLabel espacio3 = new JLabel("         ");
+		espacio3.setFont(mini);
+		panelHeader.add(espacio3, BorderLayout.EAST);
+		
+		JLabel espacio4 = new JLabel("         ");
+		panelHeader.add(espacio4, BorderLayout.WEST);
+		
+		JLabel espacio5 = new JLabel("         ");
+		panelHeader.add(espacio5, BorderLayout.NORTH);
+		
+		JLabel espacio6 = new JLabel("         ");
+		panelHeader.add(espacio6, BorderLayout.SOUTH);
+		
+		
 		// JTable
 		
 		Vector<String> nombreColumnas = new Vector<>();
 		nombreColumnas.add("ID");
 		nombreColumnas.add("Nombre");
+		nombreColumnas.add("Descripción");
 		nombreColumnas.add("Precio");
 		nombreColumnas.add("Stock");
 				
 		
 		JTable tabla = new JTable(data, nombreColumnas);
 		JScrollPane scrollPane = new JScrollPane(tabla);
-		scrollPane.setLocation(30, 150);
-		scrollPane.setSize(920, 500);
-		panel.add(scrollPane);
+		panelCentro.add(scrollPane, BorderLayout.CENTER);
 		
 		panel.revalidate();
 
+		this.add(panel);
+		this.repaint();
+		this.setVisible(true);
+	}
+	
+	public void addProduct()
+	{
+		this.setSize(500, 500);
+		this.setTitle("Añadir producto");
+		this.setLocationRelativeTo(null);
+		
+		JPanel panel = new JPanel();
+		panel.setLocation(0, 0);
+		panel.setSize(this.WIDTH, this.HEIGHT);
+		panel.setLayout(new BorderLayout(20, 10));
+		
+		JPanel panelCentro = new JPanel();
+		panelCentro.setLayout(new GridLayout(0, 1, 10, 0));
+		panel.add(panelCentro, BorderLayout.CENTER);
+		
+		JPanel panel1 = new JPanel();
+		panel1.setLayout(new GridLayout(0, 2, 10, 0));
+		panelCentro.add(panel1);
+		
+		JPanel panel2 = new JPanel();
+		panel2.setLayout(new GridLayout(0, 2, 10, 0));
+		panelCentro.add(panel2);
+		
+		JPanel panel3 = new JPanel();
+		panel3.setLayout(new GridLayout(0, 2, 10, 0));
+		panelCentro.add(panel3);
+		
+		JPanel panel4 = new JPanel();
+		panel4.setLayout(new GridLayout(0, 2, 10, 0));
+		panelCentro.add(panel4);
+		
+		JPanel panel5 = new JPanel();
+		panel5.setLayout(new GridLayout(0, 2, 10, 0));
+		panelCentro.add(panel5);
+	
+		
+		// JLabels
+		
+		JLabel producto = new JLabel("Añadir producto");
+		producto.setBackground(new Color(181, 24, 130));
+		producto.setForeground(Color.white);
+		producto.setOpaque(true);
+		producto.setFont(titulo);
+		producto.setBorder(BorderFactory.createLineBorder(new Color(138, 12, 97), 1));
+		producto.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(producto, BorderLayout.NORTH);
+		
+		JLabel espacio12 = new JLabel("         ");
+		panel.add(espacio12, BorderLayout.EAST);
+		
+		JLabel espacio13 = new JLabel("         ");
+		panel.add(espacio13, BorderLayout.WEST);
+		
+		JLabel espacio14 = new JLabel("         ");
+		panel.add(espacio14, BorderLayout.SOUTH);
+		
+		
+		// JLabels y JTextFields
+		
+		JLabel espacio7 = new JLabel("         ");
+		panel1.add(espacio7);
+		
+		JLabel espacio8 = new JLabel("         ");
+		panel1.add(espacio8);
+		
+		
+		JLabel nombreLabel = new JLabel("Nombre:");
+		nombreLabel.setForeground(Color.black);
+		nombreLabel.setFont(subtitulo);
+		nombreLabel.setHorizontalAlignment(JLabel.LEFT);
+		panel1.add(nombreLabel);
+		
+		JTextField nombre = new JTextField();
+		panel1.add(nombre);
+		
+		JLabel espacio = new JLabel("         ");
+		panel1.add(espacio);
+		
+		JLabel espacio2 = new JLabel("         ");
+		panel1.add(espacio2);
+		
+		
+		JLabel descLabel = new JLabel("Descripción:");
+		descLabel.setForeground(Color.black);
+		descLabel.setFont(subtitulo);
+		descLabel.setHorizontalAlignment(JLabel.LEFT);
+		panel2.add(descLabel);
+		
+		JTextArea desc = new JTextArea();
+		panel2.add(desc);
+		
+		
+		JLabel espacio4 = new JLabel("         ");
+		panel3.add(espacio4);
+		
+		JLabel espacio5 = new JLabel("         ");
+		panel3.add(espacio5);
+
+		
+		JLabel precioLabel = new JLabel("Precio:");
+		precioLabel.setForeground(Color.black);
+		precioLabel.setFont(subtitulo);
+		precioLabel.setHorizontalAlignment(JLabel.LEFT);
+		panel3.add(precioLabel);
+		
+		JTextField precio = new JTextField();
+		panel3.add(precio);
+		
+		
+		JLabel espacio6 = new JLabel("         ");
+		panel3.add(espacio6);
+		
+		
+		JLabel stockLabel = new JLabel("Stock:");
+		stockLabel.setForeground(Color.black);
+		stockLabel.setFont(subtitulo);
+		stockLabel.setHorizontalAlignment(JLabel.LEFT);
+		panel4.add(stockLabel);
+		
+		JTextField stock = new JTextField();
+		panel4.add(stock);
+		
+		
+		JLabel espacio9 = new JLabel("         ");
+		panel4.add(espacio9);
+		
+		JLabel espacio10 = new JLabel("         ");
+		panel4.add(espacio10);
+		
+		JLabel espacio11 = new JLabel("         ");
+		panel4.add(espacio11);
+		
+		
+		// JButton
+		
+		JButton cancel = new JButton("Cancelar");
+		cancel.setBackground(new Color(110, 35, 86));
+		cancel.setForeground(Color.white);
+		cancel.setFont(subtitulo);
+		cancel.setHorizontalAlignment(JLabel.CENTER);
+		cancel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+		panel5.add(cancel);
+		
+		cancel.addMouseListener(new MouseAdapter() 
+		{
+			public void mouseEntered(MouseEvent e)
+			{
+				cancel.setBackground(new Color(107, 57, 90));
+			}
+			
+			public void mouseExited(MouseEvent e)
+			{
+				cancel.setBackground(new Color(110, 35, 86));
+			}
+		});
+		
+		cancel.addActionListener(new ActionListener() 
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				
+				pc = new ProductController();
+				pc.productos();		
+			}
+			
+		});
+		
+		
+		JButton add = new JButton("Añadir");
+		add.setBackground(new Color(191, 61, 149));
+		add.setForeground(Color.white);
+		add.setFont(subtitulo);
+		add.setHorizontalAlignment(JLabel.CENTER);
+		add.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+		panel5.add(add);
+		
+		add.addMouseListener(new MouseAdapter() 
+		{
+			public void mouseEntered(MouseEvent e)
+			{
+				add.setBackground(new Color(189, 104, 161));
+			}
+			
+			public void mouseExited(MouseEvent e)
+			{
+				add.setBackground(new Color(191, 61, 149));
+			}
+		});
+		
+		add.addActionListener(new ActionListener() 
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				
+				pc = new ProductController();
+				pc.add(nombre.getText(), desc.getText(), precio.getText(), stock.getText());	
+			}
+			
+		});
+		
+		
 		this.add(panel);
 		this.repaint();
 		this.setVisible(true);

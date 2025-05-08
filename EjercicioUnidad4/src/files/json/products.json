@@ -2,36 +2,42 @@
   {
     "ID": 1,
     "Nombre": "Smartphone XYZ",
+	"Descripcion": "Teléfono Celular",
     "Precio": 799.99,
     "Stock": 25
   },
   {
     "ID": 2,
     "Nombre": "Laptop UltraPro",
+	"Descripcion": "Computadora portátil",
     "Precio": 1299.99,
     "Stock": 10
   },
   {
     "ID": 3,
     "Nombre": "Tablet VisionPad",
+	"Descripcion": "Tablet grande",
     "Precio": 499.99,
     "Stock": 15
   },
   {
     "ID": 4,
     "Nombre": "Smartwatch Gen 5",
+	"Descripcion": "Reloj inteligente",
     "Precio": 249.99,
     "Stock": 30
   },
   {
     "ID": 5,
     "Nombre": "Auriculares Inalámbricos BassX",
+	"Descripcion": "Audífonos potentes",
     "Precio": 149.99,
     "Stock": 20
   },
   {
     "ID": 6,
     "Nombre": "Monitor LED 27” HD",
+	"Descripcion": "Monitor de altos hz",
     "Precio": 399.99,
     "Stock": 12
   }
