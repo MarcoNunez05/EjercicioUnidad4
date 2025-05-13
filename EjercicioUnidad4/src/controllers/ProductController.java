@@ -45,4 +45,10 @@ public class ProductController
 		
 		view.product(data);
 	}
+	
+	public void delete(String d)
+	{
+		model = new ProductModel();
+		model.remover(d);
+	}
 }

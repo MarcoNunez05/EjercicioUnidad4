@@ -15,6 +15,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -61,7 +62,7 @@ public class ProductView extends JFrame
 		panel.add(panelCentro, BorderLayout.CENTER);
 		
 		JPanel panelHeader = new JPanel();
-		panelHeader.setLayout(new BorderLayout(150, 0));
+		panelHeader.setLayout(new GridLayout(0, 2, 20, 10));
 		panelCentro.add(panelHeader, BorderLayout.NORTH);
 		
 		JPanel panelAbajo = new JPanel();
@@ -91,7 +92,7 @@ public class ProductView extends JFrame
 		panel.add(espacio2, BorderLayout.EAST);
 		
 		
-		// JButtons
+		// JButtons y JLabels del Header
 		
 		JButton actualizar = new JButton("Actualizar");
 		actualizar.setBackground(new Color(191, 61, 149));
@@ -125,6 +126,61 @@ public class ProductView extends JFrame
 			}
 			
 		});
+			
+		JLabel IDLabel = new JLabel("ID:");
+		IDLabel.setForeground(Color.black);
+		IDLabel.setFont(subtitulo);
+		IDLabel.setHorizontalAlignment(JLabel.CENTER);
+		panelHeader.add(IDLabel);
+		
+		JLabel espacio4 = new JLabel("         ");
+		panelHeader.add(espacio4);
+		
+		
+		JTextField id = new JTextField();
+		panelHeader.add(id);
+		
+		JLabel espacio3 = new JLabel("         ");
+		panelHeader.add(espacio3);
+		
+		
+		JButton borrar = new JButton("Eliminar objeto con ID");
+		borrar.setBackground(new Color(110, 35, 86));
+		borrar.setForeground(Color.white);
+		borrar.setFont(subtitulo);
+		borrar.setHorizontalAlignment(JLabel.CENTER);
+		borrar.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+		panelHeader.add(borrar);
+		
+		borrar.addMouseListener(new MouseAdapter() 
+		{
+			public void mouseEntered(MouseEvent e)
+			{
+				borrar.setBackground(new Color(107, 57, 90));
+			}
+			
+			public void mouseExited(MouseEvent e)
+			{
+				borrar.setBackground(new Color(110, 35, 86));
+			}
+		});
+		
+		borrar.addActionListener(new ActionListener() 
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				int p = JOptionPane.showConfirmDialog(panel, "¿Quieres borrar el producto con la ID " + id.getText() + "?", "Eliminar producto", JOptionPane.YES_NO_OPTION);
+				if (p == 0)
+				{
+					pc = new ProductController();		
+					pc.delete(id.getText());				
+					product(pc.actualizar());
+				}
+			}
+			
+		});
 		
 		
 		JButton nuevo = new JButton("Nuevo Producto");
@@ -133,7 +189,7 @@ public class ProductView extends JFrame
 		nuevo.setFont(subtitulo);
 		nuevo.setHorizontalAlignment(JLabel.CENTER);
 		nuevo.setBorder(BorderFactory.createLineBorder(Color.black, 2));
-		panelHeader.add(nuevo, BorderLayout.CENTER);
+		panelHeader.add(nuevo);
 		
 		nuevo.addMouseListener(new MouseAdapter() 
 		{
@@ -162,19 +218,6 @@ public class ProductView extends JFrame
 			
 		});
 		
-		JLabel espacio3 = new JLabel("         ");
-		espacio3.setFont(mini);
-		panelHeader.add(espacio3, BorderLayout.EAST);
-		
-		JLabel espacio4 = new JLabel("         ");
-		panelHeader.add(espacio4, BorderLayout.WEST);
-		
-		JLabel espacio5 = new JLabel("         ");
-		panelHeader.add(espacio5, BorderLayout.NORTH);
-		
-		JLabel espacio6 = new JLabel("         ");
-		panelHeader.add(espacio6, BorderLayout.SOUTH);
-		
 		
 		// JTable
 		
@@ -184,9 +227,8 @@ public class ProductView extends JFrame
 		nombreColumnas.add("Descripción");
 		nombreColumnas.add("Precio");
 		nombreColumnas.add("Stock");
-				
 		
-		JTable tabla = new JTable(data, nombreColumnas);
+		JTable tabla = new JTable(data, nombreColumnas);	
 		JScrollPane scrollPane = new JScrollPane(tabla);
 		panelCentro.add(scrollPane, BorderLayout.CENTER);
 		

@@ -82,7 +82,13 @@ public class ProductModel
 		
 		for (int i = 0; i < productList.size(); i++)
 		{
-			id++;
+			JSONObject jsonObj = (JSONObject)productList.get(i);
+			if (Integer.parseInt(jsonObj.get("ID").toString()) != id)
+			{
+				return id;
+			}
+			else
+				id++;
 		}
 		
 		return id;
@@ -116,6 +122,36 @@ public class ProductModel
         }
 		
 		return false;
+	}
+	
+	public void remover(String d)
+	{
+		
+		JSONArray productList = getProductList();
+		
+		String url = AuthModel.class.getResource("/files/json/products.json").getPath();
+        
+		for (int i = 0; i < productList.size(); i++) 
+		{
+			JSONObject jsonObj = (JSONObject)productList.get(i);
+			if (jsonObj.get("ID").toString().equals(d))
+			{
+				productList.remove(i);
+			}
+		} 
+         
+        System.out.println(productList); 
+         
+         // Write the JSON array to a file
+         try (FileWriter file = new FileWriter(url)) {
+             file.write(productList.toString()); // Use toString(2) for pretty printing
+             file.flush();
+             file.close();
+             System.out.println("JSON array written to file successfully!");
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
+         
 	}
 	
 }
