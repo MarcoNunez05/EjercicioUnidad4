@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 
 import org.json.simple.JSONArray;
 
+import controllers.HomeController;
 import controllers.ProductController;
 
 public class ProductView extends JFrame 
@@ -61,6 +62,12 @@ public class ProductView extends JFrame
 		panelCentro.setBorder(BorderFactory.createLineBorder(Color.black, 3));
 		panel.add(panelCentro, BorderLayout.CENTER);
 		
+		JPanel panelArriba = new JPanel();
+		panelArriba.setOpaque(true);
+		panelArriba.setLayout(new BorderLayout());
+		panelArriba.setBorder(BorderFactory.createLineBorder(new Color(138, 12, 97), 5));
+		panel.add(panelArriba, BorderLayout.NORTH);
+		
 		JPanel panelHeader = new JPanel();
 		panelHeader.setLayout(new GridLayout(0, 2, 20, 10));
 		panelCentro.add(panelHeader, BorderLayout.NORTH);
@@ -74,14 +81,13 @@ public class ProductView extends JFrame
 		
 		// JLabels
 		
-		JLabel producto = new JLabel("Home");
-		producto.setBackground(new Color(181, 24, 130));
+		JLabel producto = new JLabel("Productos");
 		producto.setForeground(Color.white);
+		producto.setBackground(new Color(138, 12, 97));
 		producto.setOpaque(true);
 		producto.setFont(titulo);
-		producto.setBorder(BorderFactory.createLineBorder(new Color(138, 12, 97), 5));
 		producto.setHorizontalAlignment(JLabel.CENTER);
-		panel.add(producto, BorderLayout.NORTH);
+		panelArriba.add(producto, BorderLayout.CENTER);
 		
 		JLabel espacio = new JLabel("     ");
 		espacio.setFont(mini);
@@ -90,6 +96,12 @@ public class ProductView extends JFrame
 		JLabel espacio2 = new JLabel("     ");
 		espacio2.setFont(mini);
 		panel.add(espacio2, BorderLayout.EAST);
+		
+		JLabel espacio12 = new JLabel("                           ");
+		espacio12.setBackground(new Color(138, 12, 97));
+		espacio12.setOpaque(true);
+		espacio12.setFont(mini);
+		panelArriba.add(espacio12, BorderLayout.EAST);
 		
 		
 		// JButtons y JLabels del Header
@@ -126,6 +138,41 @@ public class ProductView extends JFrame
 			}
 			
 		});
+		
+		JButton regresar = new JButton("Regresar");
+		regresar.setBackground(new Color(191, 61, 149));
+		regresar.setForeground(Color.white);
+		regresar.setFont(subtitulo);
+		regresar.setHorizontalAlignment(JLabel.CENTER);
+		regresar.setBorder(BorderFactory.createLineBorder(Color.black, 3));
+		panelArriba.add(regresar, BorderLayout.WEST);
+		
+		regresar.addMouseListener(new MouseAdapter() 
+		{
+			public void mouseEntered(MouseEvent e)
+			{
+				regresar.setBackground(new Color(189, 104, 161));
+			}
+			
+			public void mouseExited(MouseEvent e)
+			{
+				regresar.setBackground(new Color(191, 61, 149));
+			}
+		});
+		
+		regresar.addActionListener(new ActionListener() 
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				HomeController hm = new HomeController();
+				hm.home();
+			}
+			
+		});
+		
 			
 		JLabel IDLabel = new JLabel("ID:");
 		IDLabel.setForeground(Color.black);
@@ -135,7 +182,6 @@ public class ProductView extends JFrame
 		
 		JLabel espacio4 = new JLabel("         ");
 		panelHeader.add(espacio4);
-		
 		
 		JTextField id = new JTextField();
 		panelHeader.add(id);

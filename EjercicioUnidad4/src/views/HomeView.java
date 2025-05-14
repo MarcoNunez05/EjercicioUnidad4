@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 
 import controllers.AuthController;
 import controllers.ProductController;
+import controllers.UserController;
 
 
 public class HomeView extends JFrame 
@@ -243,7 +244,9 @@ public class HomeView extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				JOptionPane.showMessageDialog(panel, "Ejemplo de usuarios.", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
+				dispose();
+				UserController uc = new UserController();
+				uc.showUsers();
 			}
 			
 		});

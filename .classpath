@@ -7,5 +7,6 @@
 	</classpathentry>
 	<classpathentry kind="src" path="EjercicioUnidad4/src"/>
 	<classpathentry kind="lib" path="EjercicioUnidad4/src/files/JARs/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Turner/git/EjercicioUnidad4/EjercicioUnidad4/src/files/JARs/mysql-connector-j-9.3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
