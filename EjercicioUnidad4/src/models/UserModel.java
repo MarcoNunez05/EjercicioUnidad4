@@ -59,4 +59,35 @@ public class UserModel {
 		
 		return users;
 	}
+	
+	
+	public boolean add(String n, String e, String r, String p)
+	{
+		String query = "INSERT INTO `users` (`id`, `name`, `email`, `role`, `phone`, `create_at`, `update_at`) VALUES (NULL, '" + n + "', '" + e + "', '" + r + "', '" + p + "', NULL, NULL)";
+		Connection conn = null;
+		Statement stmt = null;
+		
+		try {
+			
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/bddunidad4", "root", "");
+			stmt = conn.createStatement();
+		
+			
+			int rs = stmt.executeUpdate(query);
+			 
+			if(rs > 0) 
+				return true; 
+			
+		} catch (Exception x) {
+			x.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+			} catch (Exception x) {}
+		}
+		
+		return false;
+	}
 }

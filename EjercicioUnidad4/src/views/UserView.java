@@ -68,6 +68,10 @@ public class UserView extends JFrame
 		panelArriba.setBorder(BorderFactory.createLineBorder(new Color(88, 224, 215), 5));
 		panel.add(panelArriba, BorderLayout.NORTH);
 		
+		JPanel panelHeader = new JPanel();
+		panelHeader.setLayout(new GridLayout(0, 2, 20, 10));
+		panelCentro.add(panelHeader, BorderLayout.NORTH);
+		
 		JPanel panelAbajo = new JPanel();
 		panelAbajo.setOpaque(true);
 		panelAbajo.setLayout(new BorderLayout(20, 50));
@@ -170,6 +174,42 @@ public class UserView extends JFrame
 		});
 			
 		
+		JButton nuevo = new JButton("Nuevo usuario");
+		nuevo.setBackground(new Color(61, 191, 182));
+		nuevo.setForeground(Color.white);
+		nuevo.setFont(subtitulo);
+		nuevo.setHorizontalAlignment(JLabel.CENTER);
+		nuevo.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+		panelHeader.add(nuevo);
+		
+		nuevo.addMouseListener(new MouseAdapter() 
+		{
+			public void mouseEntered(MouseEvent e)
+			{
+				nuevo.setBackground(new Color(123, 224, 217));
+			}
+			
+			public void mouseExited(MouseEvent e)
+			{
+				nuevo.setBackground(new Color(61, 191, 182));
+			}
+		});
+		
+		nuevo.addActionListener(new ActionListener() 
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				
+				UserController uc = new UserController();
+				uc.addUser();
+			}
+			
+		});
+		
+		
 		// JTable
 		Vector<Vector<String>> listaUsuarios = new Vector<>();
 		
@@ -207,5 +247,220 @@ public class UserView extends JFrame
 		this.setVisible(true);
 
 	}
+	
+	
+	public void addUser()
+	{
+		this.setSize(500, 500);
+		this.setTitle("Añadir usuario");
+		this.setLocationRelativeTo(null);
+		
+		JPanel panel = new JPanel();
+		panel.setLocation(0, 0);
+		panel.setSize(this.WIDTH, this.HEIGHT);
+		panel.setLayout(new BorderLayout(20, 10));
+		
+		JPanel panelCentro = new JPanel();
+		panelCentro.setLayout(new GridLayout(0, 1, 10, 0));
+		panel.add(panelCentro, BorderLayout.CENTER);
+		
+		JPanel panel1 = new JPanel();
+		panel1.setLayout(new GridLayout(0, 2, 10, 0));
+		panelCentro.add(panel1);
+		
+		JPanel panel2 = new JPanel();
+		panel2.setLayout(new GridLayout(0, 2, 10, 0));
+		panelCentro.add(panel2);
+		
+		JPanel panel3 = new JPanel();
+		panel3.setLayout(new GridLayout(0, 2, 10, 0));
+		panelCentro.add(panel3);
+		
+		JPanel panel4 = new JPanel();
+		panel4.setLayout(new GridLayout(0, 2, 10, 0));
+		panelCentro.add(panel4);
+		
+		JPanel panel5 = new JPanel();
+		panel5.setLayout(new GridLayout(0, 2, 10, 0));
+		panelCentro.add(panel5);
+	
+		
+		// JLabels
+		
+		JLabel producto = new JLabel("Añadir usuario");
+		producto.setBackground(new Color(88, 224, 215));
+		producto.setForeground(Color.white);
+		producto.setOpaque(true);
+		producto.setFont(titulo);
+		producto.setBorder(BorderFactory.createLineBorder(new Color(138, 12, 97), 1));
+		producto.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(producto, BorderLayout.NORTH);
+		
+		JLabel espacio12 = new JLabel("         ");
+		panel.add(espacio12, BorderLayout.EAST);
+		
+		JLabel espacio13 = new JLabel("         ");
+		panel.add(espacio13, BorderLayout.WEST);
+		
+		JLabel espacio14 = new JLabel("         ");
+		panel.add(espacio14, BorderLayout.SOUTH);
+		
+		
+		// JLabels y JTextFields
+		
+		JLabel espacio7 = new JLabel("         ");
+		panel1.add(espacio7);
+		
+		JLabel espacio8 = new JLabel("         ");
+		panel1.add(espacio8);
+		
+		
+		JLabel nombreLabel = new JLabel("Nombre:");
+		nombreLabel.setForeground(Color.black);
+		nombreLabel.setFont(subtitulo);
+		nombreLabel.setHorizontalAlignment(JLabel.LEFT);
+		panel1.add(nombreLabel);
+		
+		JTextField nombre = new JTextField();
+		panel1.add(nombre);
+		
+		JLabel espacio = new JLabel("         ");
+		panel1.add(espacio);
+		
+		JLabel espacio2 = new JLabel("         ");
+		panel1.add(espacio2);
+		
+		
+		JLabel emailLabel = new JLabel("Email:");
+		emailLabel.setForeground(Color.black);
+		emailLabel.setFont(subtitulo);
+		emailLabel.setHorizontalAlignment(JLabel.LEFT);
+		panel2.add(emailLabel);
+		
+		JTextField email = new JTextField();
+		panel2.add(email);
+		
+		
+		JLabel espacio4 = new JLabel("         ");
+		panel3.add(espacio4);
+		
+		JLabel espacio5 = new JLabel("         ");
+		panel3.add(espacio5);
 
+		
+		JLabel rolLabel = new JLabel("Rol:");
+		rolLabel.setForeground(Color.black);
+		rolLabel.setFont(subtitulo);
+		rolLabel.setHorizontalAlignment(JLabel.LEFT);
+		panel3.add(rolLabel);
+		
+		JTextField rol = new JTextField();
+		panel3.add(rol);
+		
+		
+		JLabel espacio6 = new JLabel("         ");
+		panel3.add(espacio6);
+		
+		
+		JLabel phoneLabel = new JLabel("Teléfono:");
+		phoneLabel.setForeground(Color.black);
+		phoneLabel.setFont(subtitulo);
+		phoneLabel.setHorizontalAlignment(JLabel.LEFT);
+		panel4.add(phoneLabel);
+		
+		JTextField phone = new JTextField();
+		panel4.add(phone);
+		
+		
+		JLabel espacio9 = new JLabel("         ");
+		panel4.add(espacio9);
+		
+		JLabel espacio10 = new JLabel("         ");
+		panel4.add(espacio10);
+		
+		JLabel espacio11 = new JLabel("         ");
+		panel4.add(espacio11);
+		
+		
+		// JButton
+		
+		JButton cancel = new JButton("Cancelar");
+		cancel.setBackground(new Color(45, 128, 122));
+		cancel.setForeground(Color.white);
+		cancel.setFont(subtitulo);
+		cancel.setHorizontalAlignment(JLabel.CENTER);
+		cancel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+		panel5.add(cancel);
+		
+		cancel.addMouseListener(new MouseAdapter() 
+		{
+			public void mouseEntered(MouseEvent e)
+			{
+				cancel.setBackground(new Color(65, 158, 152));
+			}
+			
+			public void mouseExited(MouseEvent e)
+			{
+				cancel.setBackground(new Color(45, 128, 122));
+			}
+		});
+		
+		cancel.addActionListener(new ActionListener() 
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				
+				UserController uc = new UserController();
+				uc.showUsers();
+			}
+			
+		});
+		
+		
+		JButton add = new JButton("Añadir");
+		add.setBackground(new Color(61, 191, 182));
+		add.setForeground(Color.white);
+		add.setFont(subtitulo);
+		add.setHorizontalAlignment(JLabel.CENTER);
+		add.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+		panel5.add(add);
+		
+		add.addMouseListener(new MouseAdapter() 
+		{
+			public void mouseEntered(MouseEvent e)
+			{
+				add.setBackground(new Color(123, 224, 217));
+			}
+			
+			public void mouseExited(MouseEvent e)
+			{
+				add.setBackground(new Color(61, 191, 182));
+			}
+		});
+		
+		add.addActionListener(new ActionListener() 
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+			
+				UserController uc = new UserController();
+				
+				uc.add(nombre.getText(), email.getText(), rol.getText(), phone.getText());
+				
+				uc.showUsers();
+			}
+			
+		});
+		
+		
+		this.add(panel);
+		this.repaint();
+		this.setVisible(true);
+	}
 }

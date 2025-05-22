@@ -28,4 +28,15 @@ public class UserController
 		UserModel um = new UserModel();
 		return um.get();
 	}
+	
+	public void addUser()
+	{
+		vista.addUser();
+	}
+	
+	public void add(String n, String e, String r, String p)
+	{
+		UserModel um = new UserModel();
+		um.add(n, e, e, e);
+	}
 }
